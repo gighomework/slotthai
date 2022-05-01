@@ -1,0 +1,132 @@
+   @font-face {
+    font-family: 'iannnnn-DOG';
+    src: url('fonts/hinted-subset-iannnnnDOG-Bold.woff2') format('woff2'),
+        url('fonts/hinted-subset-iannnnnDOG-Bold.woff') format('woff'),
+        url('fonts/hinted-subset-iannnnnDOG-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}   
+
+.main-heading{
+    color: #000000;
+    font-weight:bold;
+    font-family:"iannnnn-DOG";
+    font-size:30px;
+    margin:5px;  
+    margin-left:8px;  
+}
+
+.button{
+    background:white;
+    font-family:"iannnnn-DOG";
+    font-weight:bold;
+    font-size:12px;
+    height:40px;   
+    width:150px;
+    margin-top:10px;
+    margin-left:9px;
+    border-radius:30px; 
+    border-width:0px;  
+}
+
+.paragraph{
+    font-size:11px;
+    color:white;
+    padding:5px;
+}
+
+.similar-movies{
+    font-size:17px;
+    color:white;
+    padding-left:4px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 10px 10px 10px;
+}
+.container h1 {
+  text-align: center;
+  font-weight: 200;
+}
+.container h2 {
+  font-weight: 500;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.img-container img {
+  cursor: pointer;
+  border-radius: 6px;
+  width: 48%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 255, 255, 0.5) !important;
+}
+
+.popupContainer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  overflow: auto;
+}
+.popupContainer .popUpBackground {
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+.popupContainer .popUpBackground.active {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.popupContainer .popImage {
+  position: relative;
+  display: block;
+  transition: all 0.3s ease-in-out;
+  border-radius: 6px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+
+.banner{
+text-align: center;
+margin-top: 10px;
+}
+  .main-header {
+  text-align: center;
+  
+}
+.images{
+    width:200px;
+    height: 200px;
+    align-items: center;
+    margin-left:80px;
+    margin-right:100px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.main-heading{
+    color: #ffdd00;
+    font-weight:bold;
+    font-family:"iannnnn-DOG";
+    font-size:30px;
+    margin:5px;  
+    margin-left:8px;  
+}
+h1,h2,h3,h3,h5{
+  font-family:"iannnnn-DOG";
+}
+h1{
+    color:#ff0000;
+    background: #000000a0;
+}

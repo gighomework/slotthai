@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <!-- Created by Niush Sitaula -->
+        <title>GIG SLOTTHAI</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <link rel="stylesheet" href="css/style.css" />
+ </head>
+  <body> <div class="sticky">
+ <ul>
+  <li><a href="index.html">หน้าแรก</a></li>
+</ul>
+</div>
+    <!-- แสดงหน้าเว็บ  -->
+    <p>duckxo</p>
+   <img src="https://www.img.in.th/images/8fd0301f74a71923a5bcbea7a4c8b183.png">
+  
+  <!-- แสดงหน้าเว็บ  -->
+  <button id="btnShare" onclick="sendShare()">แชร์</button>
+  <button id="btnLogin" onclick="liff.login()">Log In</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="myscripts.js"></script>
+  <script>
+    async function sendShare() {
+      const result = await liff.shareTargetPicker([
+                       
+ {  
+ "type": "flex",
+ "altText": "GiG slotthai",
+ "contents":
+
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://gighomework.github.io/slotthai/img/duckxo.png",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "2:2.3",
+            "gravity": "top"
+          }
+        ],
+        "paddingAll": "0px",
+        "backgroundColor": "#00000020",
+        "cornerRadius": "none",
+        "background": {
+          "type": "linearGradient",
+          "angle": "0deg",
+          "startColor": "#ffd700",
+          "endColor": "#ffd70050"
+        }
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "สมัครคลิ๊ก",
+              "uri": "https://d20gjgsn2f0jqy.cloudfront.net/Iamrobot/623b53fac9322989ca3479d7.html"
+            },
+            "color": "#0000ff",
+            "style": "link"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "แชร์",
+              "uri": "https://liff.line.me/1656907941-LJw00vr3"
+            },
+            "style": "link",
+            "color": "#f0f0f0"
+          }
+        ],
+        "backgroundColor": "#000000",
+        "background": {
+          "type": "linearGradient",
+          "angle": "0deg",
+          "startColor": "#000000",
+          "endColor": "#ffd700"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.img.in.th/images/83d5e29d08eef58182ce0ae41915775e.jpg",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "2:2.3",
+            "gravity": "top"
+          }
+        ],
+        "paddingAll": "0px",
+        "backgroundColor": "#00000020",
+        "cornerRadius": "none",
+        "background": {
+          "type": "linearGradient",
+          "angle": "0deg",
+          "startColor": "#ffd700",
+          "endColor": "#ffd70050"
+        }
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "สมัครคลิ๊ก",
+              "uri": "https://d1zyyfosgmfbcl.cloudfront.net/lucaasia/AQGQXnYJ2R"
+            },
+            "color": "#ffffff",
+            "style": "link"
+          }
+        ],
+        "backgroundColor": "#000000",
+        "background": {
+          "type": "linearGradient",
+          "angle": "0deg",
+          "startColor": "#000000",
+          "endColor": "#ff0000"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.img.in.th/images/8fd0301f74a71923a5bcbea7a4c8b183.png",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "2:2.3",
+            "gravity": "top",
+            "animated": true
+          }
+        ],
+        "paddingAll": "0px",
+        "backgroundColor": "#00000020",
+        "cornerRadius": "none",
+        "background": {
+          "type": "linearGradient",
+          "angle": "0deg",
+          "startColor": "#ffd700",
+          "endColor": "#ffd70050"
+        }
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ติดต่อ @ GiG",
+              "uri": "https://lin.ee/yMxbqXT"
+            },
+            "color": "#00ff00",
+            "style": "link"
+          }
+        ],
+        "backgroundColor": "#000000",
+        "background": {
+          "type": "linearGradient",
+          "angle": "45deg",
+          "startColor": "#ffdd00",
+          "endColor": "#ff0000"
+        }
+      }
+    }
+  ]
+} 
+
+   }
+             ])
+      if (result) {
+        alert(`[${result.status}] ส่งสำเร็จ`)
+      } else {
+        const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
+
+        if (minorVer === undefined) {
+          alert('ShareTargetPicker was canceled in external browser')
+          return
+        }
+
+        if (parseInt(majorVer) >= 10 && parseInt(minorVer) >= 10 && parseInt(patchVer) > 0) {
+          alert('การแชร์ถูก ยกเลิก')
+        }
+      }
+    }
+    function logOut() {
+      liff.logout()
+      window.location.reload()
+    }
+    async function main() {
+      await liff.init({ liffId: "1656907941-LJw00vr3" })
+      if (liff.isLoggedIn()) {
+        document.getElementById("btnShare").style.display = "block"
+        if (!liff.isInClient()) {
+          document.getElementById("btnLogOut").style.display = "block"
+        }
+      } else {
+          alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
+        document.getElementById("btnLogin").style.display = "block"
+      }
+    }
+    main()
+  </script>
+    </body>
+</html>

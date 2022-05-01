@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <!-- Created by Niush Sitaula -->
+        <title>GIG SLOTTHAI</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <link rel="stylesheet" href="css/style.css" />
+ </head>
+  <body> <div class="sticky">
+ <ul>
+  <li><a href="index.html">หน้าแรก</a></li>
+</ul>
+</div>
+    <!-- แสดงหน้าเว็บ  -->
+    <p>โปร Alp</p>
+   <img src="https://gighomework.github.io/slotthai/vdo/alp.jpg">
+  
+  <!-- แสดงหน้าเว็บ  -->
+  <button id="btnShare" onclick="sendShare()">แชร์</button>
+  <button id="btnLogin" onclick="liff.login()">Log In</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="myscripts.js"></script>
+  <script>
+    async function sendShare() {
+      const result = await liff.shareTargetPicker([
+                       
+ {  
+ "type": "flex",
+ "altText": "slotthai",
+ "contents":
+
+
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://gighomework.github.io/slotthai/vdo/alp1.jpg",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "2:2.5",
+            "gravity": "top"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ผ่าน",
+                "color": "#000000",
+                "align": "center",
+                "size": "xs",
+                "offsetTop": "3px"
+              }
+            ],
+            "position": "absolute",
+            "cornerRadius": "20px",
+            "offsetTop": "18px",
+            "backgroundColor": "#aefd60",
+            "offsetStart": "18px",
+            "height": "25px",
+            "width": "53px"
+          }
+        ],
+        "paddingAll": "0px"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "สมัครคลิ๊ก",
+            "align": "center",
+            "color": "#ff00f0",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://bit.ly/ALPHAPG"
+            }
+          }
+        ],
+        "background": {
+          "type": "linearGradient",
+          "angle": "60deg",
+          "startColor": "#000000",
+          "endColor": "#000000",
+          "centerColor": "#ffdd00"
+        },
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://bit.ly/ALPHAPG"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://gighomework.github.io/slotthai/vdo/alp.jpg",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "2:2.5",
+            "gravity": "top"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ผ่าน",
+                "color": "#000000",
+                "align": "center",
+                "size": "xs",
+                "offsetTop": "3px"
+              }
+            ],
+            "position": "absolute",
+            "cornerRadius": "20px",
+            "offsetTop": "18px",
+            "backgroundColor": "#aefd60",
+            "offsetStart": "18px",
+            "height": "25px",
+            "width": "53px"
+          }
+        ],
+        "paddingAll": "0px"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ติดต่อแอดมิน",
+            "align": "center",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://lin.ee/zYyDr6F"
+            },
+            "color": "#ff0000"
+          }
+        ],
+        "background": {
+          "type": "linearGradient",
+          "angle": "60deg",
+          "startColor": "#000000",
+          "endColor": "#000000",
+          "centerColor": "#ffffff90"
+        },
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://lin.ee/zYyDr6F"
+        }
+      }
+    }
+  ]
+}
+
+
+
+   }
+             ])
+      if (result) {
+        alert(`[${result.status}] ส่งสำเร็จ`)
+      } else {
+        const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
+
+        if (minorVer === undefined) {
+          alert('ShareTargetPicker was canceled in external browser')
+          return
+        }
+
+        if (parseInt(majorVer) >= 10 && parseInt(minorVer) >= 10 && parseInt(patchVer) > 0) {
+          alert('การแชร์ถูก ยกเลิก')
+        }
+      }
+    }
+    function logOut() {
+      liff.logout()
+      window.location.reload()
+    }
+    async function main() {
+      await liff.init({ liffId: "1656907941-LJw00vr3" })
+      if (liff.isLoggedIn()) {
+        document.getElementById("btnShare").style.display = "block"
+        if (!liff.isInClient()) {
+          document.getElementById("btnLogOut").style.display = "block"
+        }
+      } else {
+          alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
+        document.getElementById("btnLogin").style.display = "block"
+      }
+    }
+    main()
+  </script>
+    </body>
+</html>
