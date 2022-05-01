@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html><head>'
+
+     <style>
+     video{
+         width: 100%;
+     }
+    .gradient{
+	background: linear-gradient(90deg, rgba(0,0,0,1), rgba(255,255,0,1), rgba(255,255,255,1), rgba(0,0,0,1));
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+      .gradients {
+        background: linear-gradient(90deg, #2F2F33 0%, #5E5E5E50 50%, #0D0D0D 100%);
+        background-size: 400% 400%;
+    	animation: gradient 15s ease infinite;
+      }
+      .bg-c{
+          background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(255,0,0,1) 100%);
+      }
+      .bg-n{
+          background: rgba(255, 255, 255, 0.2);
+      }
+      .txt-red{
+          color: #FF001A;
+      }
+        body { margin: 16px }
+    button, img { display: none; width: 40% }
+    button { padding: 16px }
+    </style>
+  </head>
+<body class="gradients" >
+<video autoplay muted loop id="myVideo">
+  <source src="slotthai.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<div class="content">
+ 
+  <img id="pictureUrl">
+  <button id="btnLogIn" onclick="logIn()">Log In</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+  
+</div>
+   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+ 
+  <script>
+    function logOut() {
+      liff.logout()
+      window.location.reload()
+    }
+    function logIn() {
+      liff.login({ redirectUri: window.location.href })
+    }
+    async function getUserProfile() {
+      const profile = await liff.getProfile()
+      document.getElementById("pictureUrl").style.display = "block"
+      document.getElementById("pictureUrl").src = profile.pictureUrl
+      document.getElementById("userId").style.display = "block"
+      document.getElementById("displayName").style.display = "block"
+    }
+    async function main() {
+      await liff.init({ liffId: "1656907941-LJw00vr3" })
+      if (liff.isInClient()) {
+        getUserProfile()
+      } else {
+        if (liff.isLoggedIn()) {
+          getUserProfile()
+          document.getElementById("btnLogIn").style.display = "none"
+          document.getElementById("btnLogOut").style.display = "block"
+        } else {
+          document.getElementById("btnLogIn").style.display = "block"
+          document.getElementById("btnLogOut").style.display = "none"
+        }
+      }
+    }
+    main()
+  </script>
+
+
+
+<script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+</script>
+
+</body>
+</html>
