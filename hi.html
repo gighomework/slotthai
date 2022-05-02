@@ -31,7 +31,53 @@
  "type": "flex",
  "altText": "GiG slotthai",
  "contents":
-
+{
+  "type": "bubble",
+  "size": "giga",
+  "hero": {
+    "type": "video",
+    "url": "https://gighomework.github.io/slotthai/vdo/hi.mp4",
+    "previewUrl": "https://gighomework.github.io/slotthai/vdo/hii.png",
+    "altContent": {
+      "type": "image",
+      "size": "full",
+      "aspectRatio": "20:11",
+      "aspectMode": "cover",
+      "url": "https://gighomework.github.io/slotthai/vdo/hii.png"
+    }
+  },
+  "footer": {
+    "type": "box",
+    "layout": "horizontal",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "text",
+        "text": "ต่อต้านเพจโกง ออนไลน์ แชร์คลิ๊ก",
+        "align": "center",
+        "color": "#ff0000",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://liff.line.me/1656907941-A7R33M0g"
+        }
+      }
+    ],
+    "flex": 0,
+    "background": {
+      "type": "linearGradient",
+      "angle": "70deg",
+      "startColor": "#000000",
+      "endColor": "#000000",
+      "centerColor": "#00BDFF"
+    },
+    "action": {
+      "type": "uri",
+      "label": "action",
+      "uri": "https://liff.line.me/1656907941-A7R33M0g"
+    }
+  }
+}
 
    }
              ])
@@ -55,7 +101,7 @@
       window.location.reload()
     }
     async function main() {
-      await liff.init({ liffId: "1656907941-LJw00vr3" })
+      await liff.init({ liffId: "1656907941-A7R33M0g" })
       if (liff.isLoggedIn()) {
         document.getElementById("btnShare").style.display = "block"
         if (!liff.isInClient()) {
