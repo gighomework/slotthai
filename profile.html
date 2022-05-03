@@ -131,14 +131,14 @@
         background-color: honeydew;
         color: black;
       }
-      #keep, #logout, #tb1{
+      #keep, #logouts, #logins, #tb1{
           display: none;
       }
     </style>
   </head>
   <body>
     <div id="message">
-      <center><h2>Welcom Back !</h2><p class="expand" id="displayName">Loading. . .</p></center>
+      <center><h2>Welcome Back !</h2><p class="expand" id="displayName">Loading. . .</p></center>
 
       <center>
         <img
@@ -262,19 +262,18 @@
       await liff.init({ liffId: "1656907941-LJw00vr3" })
       if (liff.isLoggedIn()) {
         document.getElementById("logout").style.display = "block";
-         document.getElementById("login").style.display = "none"
+        
        //  window.location.replace("feed.php");
         if (!liff.isInClient()) {
             
-          document.getElementById("logout").style.display = "block"
+          document.getElementById("logouts").style.display = "block"
         }
       } else {
           alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
               //window.location.replace("home.php");
             
-        document.getElementById("login").style.display = "block"
+        document.getElementById("logins").style.display = "block"
       }
-      setTimeout(function(){ liff.closeWindow(); }, 3000);
     }
     main()
   </script>
