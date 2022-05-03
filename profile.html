@@ -42,7 +42,7 @@
         display: block;
         text-align: center;
         background: #039be5;
-        text-divansform: uppercase;
+        text-transform: uppercase;
         text-decoration: none;
         color: white;
         padding: 16px;
@@ -75,40 +75,40 @@
         width: 100%;
       }
 
-      table p {
+      table td {
         border: 1px solid black;
       }
 
-      table p.shrink {
+      table td.shrink {
         white-space: wrap;
         font-size: 19px;
         padding: 5px;
         background-color: yellow;
       }
-      table p.shrink_context {
+      table td.shrink_context {
         white-space: wrap;
         font-size: 19px;
         padding: 5px;
         background-color: rgb(0, 255, 106);
       }
-      table p.shrink_top {
+      table td.shrink_top {
         white-space: nowrap;
         background-color: black;
         color: white;
         font-size: 25px;
       }
-      table p.expand {
+      table td.expand {
         width: 99%;
         white-space: wrap;
         font-size: 19px;
         padding: 5px;
       }
-      table p.expand_top {
+      table td.expand_top {
         width: 99%;
         white-space: wrap;
         background-color: black;
       }
-      div:hover {
+      tr:hover {
         background-color: gray;
       }
 
@@ -122,8 +122,8 @@
         display: inline-block;
         font-size: 16px;
         border-radius: 5px;
-        -webkit-divansition-duration: 0.4s; /* Safari */
-        divansition-duration: 0.4s;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
         cursor: pointer;
       }
 
@@ -131,14 +131,14 @@
         background-color: honeydew;
         color: black;
       }
-      #user , #emails, #hide{
+      #keep, #logout, #tb1{
           display: none;
       }
     </style>
   </head>
   <body>
     <div id="message">
-      
+      <center><h2>Welcom Back !</h2><p class="expand" id="displayName">Loading. . .</p></center>
 
       <center>
         <img
@@ -148,57 +148,135 @@
           height="150px"
           id="profileImage"
         />
-    
-     
-      <table>
-        <!--div>
-          <p class="shrink_top">* Profile</p>
-          <p class="expand_top">
-            <button onclick="getProfile()">View raw JSON Data</button>
-          </p>
-        </div-->
-      
-        <div>
-          
-          <p class="expand" id="displayName">กำลังโหลด. . .</p>
-        </div>
-        <div>
-        
-          <p class="expand" id="statusMessage">กำลังโหลด . . .</p>
-        </div>
-         <button id="show" onclick="show()">ข้อมูล ยูสเซอร์ อีเมล์</button>
-         <button id="hide" onclick="show()">ข้อมูล ยูสเซอร์ อีเมล์</button>
-          <div id="user">
-          <p class="shrink">ยูเซอร์</p>
-          <p class="expand" id="userId">กำลังโหลด . . .</p>
-        </div>
-        <div id="emails">
-          <p class="shrink">อีเมล์</p>
-          <p class="expand" id="email">กำลังโหลด . . .</p>
-        </div>
-          </center>
-        <!--div hidden="">
-          <p class="shrink">pictureUrl</p>
-          <p class="expand">
-            <a id="pictureUrl" target="_blank">กำลังโหลด . . .</a>
-          </p>
-        </div-->
-       
-      </table>
-       <!--center>
+      </center>
+      <center>
+          <br>
         <button onclick="login()">liff.login()</button>
-        <button onclick="logout()">liff.logout()</button>
-        <button onclick="sendMessage()">liff.sendMessage()</button>
+        <button id="logout" onclick="logout()">liff.logout()</button>
+        <!--button onclick="sendMessage()">liff.sendMessage()</button>
         <button onclick="scanCode()">liff.scanCode()</button>
         <button onclick="openWindow()">liff.openWindow()</button>
         <button onclick="closeWindow()">liff.closeWindow()</button>
-        <button onclick="shareTargetPicker()">liff.shareTargetPicker()</button>
-      </center-->
+        <button onclick="shareTargetPicker()">liff.shareTargetPicker()</button-->
+      </center>
+      <table id="tb1">
+        <tr>
+          <td class="shrink_top">* Profile</td>
+          <td class="expand_top">
+            <button onclick="getProfile()">View raw JSON Data</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="shrink">userId</td>
+          <td class="expand" id="userId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">displayName</td>
+          <td class="expand" id="displayName">Loading. . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">statusMessage</td>
+          <td class="expand" id="statusMessage">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">Email</td>
+          <td class="expand" id="email">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">pictureUrl</td>
+          <td class="expand">
+            <a id="pictureUrl" target="_blank">Loading . . .</a>
+          </td>
+        </tr>
+        </table>
+        <table id="keep"> 
+        <tr>
+          <td class="shrink_top">* LIFF Context</td>
+          <td class="expand_top"></td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getOS()</td>
+          <td class="expand" id="getOS">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getLanguage()</td>
+          <td class="expand" id="getLanguage">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getVersion()</td>
+          <td class="expand" id="getVersion">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.isInClient()</td>
+          <td class="expand" id="isInClient">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.isLoggedIn()</td>
+          <td class="expand" id="isLoggedIn">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getAccessToken()</td>
+          <td class="expand" id="getAccessToken">
+            <button onclick="getAccessToken()">show AccessToken</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getContext()</td>
+          <td class="expand" id="">
+            <button onclick="getContext()">show raw JSON Data</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> type</td>
+          <td class="expand" id="context_type">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> viewType</td>
+          <td class="expand" id="context_viewType">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> userId</td>
+          <td class="expand" id="context_userId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> utouId</td>
+          <td class="expand" id="context_utouId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> roomId</td>
+          <td class="expand" id="context_roomId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> groupId</td>
+          <td class="expand" id="context_groupId">Loading . . .</td>
+        </tr>
+      </table>
     </div>
 
     <p id="load">Develop with ♡ by Bensin</p>
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script src="js/liff-init.js?1234"></script>
     <script src="js/liff-functions.js?12345"></script>
+     <script>
+    async function main() {
+      await liff.init({ liffId: "1656907941-LJw00vr3" })
+      if (liff.isLoggedIn()) {
+        document.getElementById("logout").style.display = "block";
+         document.getElementById("login").style.display = "none"
+       //  window.location.replace("feed.php");
+        if (!liff.isInClient()) {
+            
+          document.getElementById("logout").style.display = "block"
+        }
+      } else {
+          alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
+              //window.location.replace("home.php");
+            
+        document.getElementById("login").style.display = "block"
+      }
+      setTimeout(function(){ liff.closeWindow(); }, 3000);
+    }
+    main()
+  </script>
   </body>
 </html>
