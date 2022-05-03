@@ -1,0 +1,69 @@
+.ml-vdo{
+	float: left;
+	position: relative;
+}
+.ml-vdo-container{
+	/*text-align: center;*/			
+	position: relative;
+	float: left;
+}
+.ml-meta{
+	position: absolute;			
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+	background: rgba(0,0,0,0.4);
+	color: #FFF;
+	padding: 10px;
+}
+.ml-circle img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	float: left;
+	margin-right: 10px;
+}
+.ml-title{
+	display: inline-block;
+	margin-top: 5px;				    	
+}
+.ml-title h2{
+	font-size: 20px;
+	margin: 0;
+	padding: 0;			
+}
+.ml-desc{
+	float: left;
+    margin-top: -8px;			
+}	
+.ml-desc p{
+	margin: 0;
+	padding: 0;
+}
+.ml-social{
+	position: absolute;			
+	z-index: 100;			
+	right: 10px;
+	top: 10px;
+	background: rgba(0,0,0,0.4);
+	padding: 10px;
+	transition: 0.3s;
+	width: 20px;
+}	
+.ml-social a{
+	color: rgba(255,255,255,0.8);			
+}
+.ml-social a+a{
+	margin-top: 5px;
+	display: block;
+}
+.ml-social i:hover{
+	color: rgba(255,255,255,1);
+}
+.ml-social-tag{
+	position: absolute;
+	left: -120%;
+	background: rgba(0,0,0,0.4);
+	padding: 10px;
+	top: 0;
+}
