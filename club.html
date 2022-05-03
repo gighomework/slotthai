@@ -1,110 +1,282 @@
 <!DOCTYPE html>
-<html><head>'
-
-     <style>
-     video{
-         width: 100%;
-     }
-    .gradient{
-	background: linear-gradient(90deg, rgba(0,0,0,1), rgba(255,255,0,1), rgba(255,255,255,1), rgba(0,0,0,1));
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-      .gradients {
-        background: linear-gradient(90deg, #2F2F33 0%, #5E5E5E50 50%, #0D0D0D 100%);
-        background-size: 400% 400%;
-    	animation: gradient 15s ease infinite;
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LIFF 2.0 Example</title>
+    <link rel="shortcut icon" href="icon/icon.ico" type="image/x-icon" />
+    <link rel="icon" href="icon/icon.ico" type="image/x-icon" />
+    <style media="screen">
+      body {
+        background: #eceff1;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
       }
-      .bg-c{
-          background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(255,0,0,1) 100%);
+      #message {
+        background: white;
+        max-width: 1000px;
+        margin: 10px auto 16px;
+        padding: 32px 24px;
+        border-radius: 10px;
       }
-      .bg-n{
-          background: rgba(255, 255, 255, 0.2);
+      #message h2 {
+        color: #ffa100;
+        font-weight: bold;
+        font-size: 30px;
+        margin: 0 0 8px;
       }
-      .txt-red{
-          color: #FF001A;
+      #message h1 {
+        font-size: 22px;
+        font-weight: 300;
+        color: rgba(0, 0, 0, 0.6);
+        margin: 0 0 16px;
       }
-        body { margin: 16px }
-    button, img { display: none; width: 40% }
-    button { padding: 16px }
-    </style>
-  </head>
-<body class="gradients" >
-<video autoplay muted loop id="myVideo">
-  <source src="https://gighomework.github.io/slotthai/vdo/slotthai.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
-
-<div class="content">
- 
-  <img id="pictureUrl">
-  <button id="btnLogIn" onclick="logIn()">Log In</button>
-  <button id="btnLogOut" onclick="logOut()">Log Out</button>
-  
-</div>
-   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
- 
-  <script>
-    function logOut() {
-      liff.logout()
-      window.location.reload()
-    }
-    function logIn() {
-      liff.login({ redirectUri: window.location.href })
-    }
-    async function getUserProfile() {
-      const profile = await liff.getProfile()
-      document.getElementById("pictureUrl").style.display = "block"
-      document.getElementById("pictureUrl").src = profile.pictureUrl
-      document.getElementById("userId").style.display = "block"
-      document.getElementById("displayName").style.display = "block"
-    }
-    async function main() {
-      await liff.init({ liffId: "1656907941-LJw00vr3" })
-      if (liff.isInClient()) {
-        getUserProfile()
-      } else {
-        if (liff.isLoggedIn()) {
-          getUserProfile()
-          document.getElementById("btnLogIn").style.display = "none"
-          document.getElementById("btnLogOut").style.display = "block"
-        } else {
-          document.getElementById("btnLogIn").style.display = "block"
-          document.getElementById("btnLogOut").style.display = "none"
+      #message p {
+        line-height: 140%;
+        margin: 16px 0 24px;
+        font-size: 14px;
+      }
+      #message a {
+        display: block;
+        text-align: center;
+        background: #039be5;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+        padding: 16px;
+        border-radius: 4px;
+      }
+      #message,
+      #message a {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+      #load {
+        color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 13px;
+      }
+      @media (max-width: 600px) {
+        body,
+        #message {
+          margin-top: 0;
+          background: white;
+          box-shadow: none;
+        }
+        body {
+          border-top: 16px solid #ffa100;
         }
       }
+      table {
+        margin-top: 10px;
+        border: 2px solid black;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table td {
+        border: 1px solid black;
+      }
+
+      table td.shrink {
+        white-space: wrap;
+        font-size: 19px;
+        padding: 5px;
+        background-color: yellow;
+      }
+      table td.shrink_context {
+        white-space: wrap;
+        font-size: 19px;
+        padding: 5px;
+        background-color: rgb(0, 255, 106);
+      }
+      table td.shrink_top {
+        white-space: nowrap;
+        background-color: black;
+        color: white;
+        font-size: 25px;
+      }
+      table td.expand {
+        width: 99%;
+        white-space: wrap;
+        font-size: 19px;
+        padding: 5px;
+      }
+      table td.expand_top {
+        width: 99%;
+        white-space: wrap;
+        background-color: black;
+      }
+      tr:hover {
+        background-color: gray;
+      }
+
+      button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: honeydew;
+        color: black;
+      }
+      #keep, #logout, #tb1{
+          display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <center><h2>Welcom Back !</h2><p class="expand" id="displayName">Loading. . .</p></center>
+
+      <center>
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/uce-bot.appspot.com/o/user.jpg?alt=media&token=554b90c5-562c-469a-bfee-f36b5e3f54c9"
+          style="border-radius: 10px;"
+          width="150px"
+          height="150px"
+          id="profileImage"
+        />
+      </center>
+      <center>
+          <br>
+        <button onclick="login()">liff.login()</button>
+        <button id="logout" onclick="logout()">liff.logout()</button>
+        <!--button onclick="sendMessage()">liff.sendMessage()</button>
+        <button onclick="scanCode()">liff.scanCode()</button>
+        <button onclick="openWindow()">liff.openWindow()</button>
+        <button onclick="closeWindow()">liff.closeWindow()</button>
+        <button onclick="shareTargetPicker()">liff.shareTargetPicker()</button-->
+      </center>
+      <table id="tb1">
+        <tr>
+          <td class="shrink_top">* Profile</td>
+          <td class="expand_top">
+            <button onclick="getProfile()">View raw JSON Data</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="shrink">userId</td>
+          <td class="expand" id="userId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">displayName</td>
+          <td class="expand" id="displayName">Loading. . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">statusMessage</td>
+          <td class="expand" id="statusMessage">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">Email</td>
+          <td class="expand" id="email">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink">pictureUrl</td>
+          <td class="expand">
+            <a id="pictureUrl" target="_blank">Loading . . .</a>
+          </td>
+        </tr>
+        </table>
+        <table id="keep"> 
+        <tr>
+          <td class="shrink_top">* LIFF Context</td>
+          <td class="expand_top"></td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getOS()</td>
+          <td class="expand" id="getOS">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getLanguage()</td>
+          <td class="expand" id="getLanguage">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getVersion()</td>
+          <td class="expand" id="getVersion">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.isInClient()</td>
+          <td class="expand" id="isInClient">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.isLoggedIn()</td>
+          <td class="expand" id="isLoggedIn">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getAccessToken()</td>
+          <td class="expand" id="getAccessToken">
+            <button onclick="getAccessToken()">show AccessToken</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="shrink_context">liff.getContext()</td>
+          <td class="expand" id="">
+            <button onclick="getContext()">show raw JSON Data</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> type</td>
+          <td class="expand" id="context_type">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> viewType</td>
+          <td class="expand" id="context_viewType">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> userId</td>
+          <td class="expand" id="context_userId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> utouId</td>
+          <td class="expand" id="context_utouId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> roomId</td>
+          <td class="expand" id="context_roomId">Loading . . .</td>
+        </tr>
+        <tr>
+          <td class="shrink_context">| -> groupId</td>
+          <td class="expand" id="context_groupId">Loading . . .</td>
+        </tr>
+      </table>
+    </div>
+
+    <p id="load">Develop with ♡ by Bensin</p>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="js/liff-init.js?1234"></script>
+    <script src="js/liff-functions.js?12345"></script>
+     <script>
+    async function main() {
+      await liff.init({ liffId: "1656907941-LJw00vr3" })
+      if (liff.isLoggedIn()) {
+        document.getElementById("logout").style.display = "block";
+         document.getElementById("login").style.display = "none"
+       //  window.location.replace("feed.php");
+        if (!liff.isInClient()) {
+            
+          document.getElementById("logout").style.display = "block"
+        }
+      } else {
+          alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
+              //window.location.replace("home.php");
+            
+        document.getElementById("login").style.display = "block"
+      }
+      setTimeout(function(){ liff.closeWindow(); }, 3000);
     }
     main()
   </script>
-
-
-
-<script>
-var video = document.getElementById("myVideo");
-var btn = document.getElementById("myBtn");
-
-function myFunction() {
-  if (video.paused) {
-    video.play();
-    btn.innerHTML = "Pause";
-  } else {
-    video.pause();
-    btn.innerHTML = "Play";
-  }
-}
-</script>
-
-</body>
+  </body>
 </html>
