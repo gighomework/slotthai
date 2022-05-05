@@ -504,7 +504,7 @@
     padding: 10px 50px;
   }
 }
-#page1{
+#page2{
     display: none;
 }
 
@@ -883,22 +883,19 @@
       if (liff.isLoggedIn()) {
         document.getElementById("logouts").style.display = "block";
         
-       //  window.location.replace("feed.php");
+         window.location.replace("feed.php");
         if (!liff.isInClient()) {
             
           document.getElementById("logouts").style.display = "block"
         }
       } else {
-         alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
-              window.location.replace("profile.html");
+          alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
+              //window.location.replace("home.php");
             
-       // document.getElementById("logins").style.display = "block"
+        document.getElementById("logins").style.display = "block"
       }
     }
     main()
   </script>
   </body>
 </html>
-        
-
-
