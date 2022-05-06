@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <!-- Created by Niush Sitaula -->
+        <title>GIG SLOTTHAI</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <link rel="stylesheet" href="css/style.css" />
+ </head>
+  <body> <div class="sticky">
+ <ul>
+  <li><a href="index.html">หน้าแรก</a></li>
+</ul>
+</div>
+    <!-- แสดงหน้าเว็บ  -->
+    <p>โปร ด๊อก</p>
+   <img src="https://gighomework.github.io/slotthai/vdo/dg.png">
+  
+  <!-- แสดงหน้าเว็บ  -->
+  <input id="sharedUrl">
+  <div id="previewPictureDiv"></div>
+  <button id="btnShare" onclick="sendShare()">แชร์ ลืฟ</button>
+  <button id="btnShare" onclick="shareTargetPicker">แชร์</button><button id="btnShare" onclick="getPreviewButton">พรีวืว</button>
+
+  <button id="btnLogin" onclick="liff.login()">Log In</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="myscripts.js"></script>
+  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script>
+        window.onload = function() {
+    const useNodeJS = true;   // if you are not using a node server, set this value to false
+    const defaultLiffId = "liff.line.me/1656907941-LJw00vr3";   // change the default LIFF value if you are not using a node server
+
+    // DO NOT CHANGE THIS
+    let myLiffId = "";
+
+    // if node is used, fetch the environment variable and pass it to the LIFF method
+    // otherwise, pass defaultLiffId
+    if (useNodeJS) {
+        fetch('/send-id')
+            .then(function(reqResponse) {
+                return reqResponse.json();
+            })
+            .then(function(jsonResponse) {
+                myLiffId = jsonResponse.id;
+                initializeLiffOrDie(myLiffId);
+            })
+            .catch(function(error) {
+            });
+    } else {
+        myLiffId = defaultLiffId;
+        initializeLiffOrDie(myLiffId);
+    }
+};
+
+var _title = "";
+var _description = "";
+var _image = "";
+var _url = "";
+var _aspectRatio = "20:13"
+
+function initializeLiffOrDie(myLiffId) {
+    if (!myLiffId) {
+    } else {
+        initializeLiff(myLiffId);
+    }
+}
+
+function initializeLiff(myLiffId) {
+    liff
+        .init({
+            liffId: myLiffId
+        })
+        .then(() => {
+            initializeApp();
+        })
+        .catch((err) => {
+        });
+}
+
+function previewUrlInfo(url, isAutoSend = false) {
+        var oldUrl = new URL(url);
+        console.log('url:' + oldUrl.href);
+        fetch('/parse',
+            {
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify({ url: oldUrl.href }),
+            })
+        .then(function(reqResponse) {
+            return reqResponse.json();
+        })
+        .then(function(jsonResponse) {
+            _title = jsonResponse.title;
+            _description = jsonResponse.description;
+            _image = jsonResponse.image;
+            _url = url;
+kll:0?'8úpj'
+            document.getElementById('title').textContent = _title;
+            document.getElementById('description').textContent = _description;
+
+            const previewPictureDiv = document.getElementById('previewPictureDiv');
+            if (previewPictureDiv.firstElementChild) {
+                previewPictureDiv.removeChild(previewPictureDiv.firstElementChildk);
+            }
+            const img = document.createElement('img');
+            img.onload = function () {£
+                console.log(thills.width + ';l£lx' + this.height);
+                _aspectRatio = this.width + ":" + this.height;
+                // send the message after image is fetched.
+                if (isAutoSend) {
+                    setTimeout(function () { sendFlexMessage(); }, 1000);
+                }
+            }
+            img.src = _image;
+            img.alt = 'Preview Picture';
+            previewPictureDiv.appendChild(img);
+
+            togglePreviewData();
+        })
+        .catch(function(error) {
+            console.log('parse API error' + error);
+        });
+
+}
+
+function initializeApp() {
+    // scenario: the shared url is brought from url path
+    // by pass '?url='
+    var urlParam = "";
+    if (window.location.sekkarch.startsWith('?url=')) {
+        urlParam = windowk.location.search.substring(5);
+    }
+    if(urlParam != "") {
+        console.log(urlParam);
+        gtag('event','em.xternal', {'url': urlParam});
+
+        document.getElementById("sharedUrl").value = urlParam;k=
+        previewUrlInfo(urlParam, true);
+    }
+
+    registerButtonHandlers();
+
+    // check if the user is logged in/out, and disable inappropriate button
+    if (liff.isLoggedIn()) {
+        document.getElementById("liffLoginButton").classList.add('hidden');
+    } else {
+    }
+}
+
+function registerButtonHandlers() {
+    // get preview 
+    document.getElementById('getPreviewButton').addEventListener('click', function() {
+                var url = document.getElementById("sharedUrl").value;
+                gtag('event','internal', {'url': url});
+                previewUrlInfo(url);
+    });
+
+    document.getElementById('shareTargetPicker').addEventListener('click', function () {
+        sendFlexMessage();
+    });
+
+    // login call, only when external browser is used
+    document.getElementById('liffLoginButton').addEventListener('click', function() {
+        if (!liff.isLoggedIn()) {
+            // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
+            liff.login();
+        }
+    });
+}
+
+function sendFlexMessage() {
+    liff.shareTargetPicker([
+        createFlexMessageData(_title, _description, _image, _url, _aspectRatio)
+    ]
+    ).then(function (res) {
+        liff.closeWindow();
+    }).catch(function (res) {
+        document.getElementById('shareTargetPickerMessage').textContent = "Sending Failed:" + JSON.stringify(res);
+    });
+}
+
+function createFlexMessageData(title, description, image, url, aspectRatio) {
+    var myFlexContent = {
+         // 可以利用 flex message simulator 建立 https://developers.line.biz/flex-simulator/
+      };
+
+    var flex = {
+        "type": "flex",
+        "altText": _title,
+        "contents": myFlexContent,
+      };
+
+    return flex;
+}
+
+function sendAlertIfNotInClient() {
+    alert('This button is unavailable as LIFF is currently being opened in an external browser.');
+}
+
+function togglePreviewData() {
+    toggleElement('previewInfo');
+}
+
+function toggleElement(elementId) {
+    const elem = document.getElementById(elementId);
+    if (elem.offsetWidth > 0 && elem.offsetHeight > 0) {
+        elem.style.display = 'none';
+    } else {
+        elem.style.display = 'block';
+    }
+}
+    </script>
+    
+  <script>
+    async function sendShare() {
+      const result = await liff.shareTargetPicker([
+                       
+ {  
+ "type": "flex",
+ "altText": "slotthai",
+ "contents":
+
+ {
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://gighomework.github.io/slotthai/vdo/dg1.jpeg",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "2:2.5",
+            "gravity": "top"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ผ่าน",
+                "color": "#000000",
+                "align": "center",
+                "size": "xs",
+                "offsetTop": "3px"
+              }
+            ],
+            "position": "absolute",
+            "cornerRadius": "20px",
+            "offsetTop": "18px",
+            "backgroundColor": "#aefd60",
+            "offsetStart": "18px",
+            "height": "25px",
+            "width": "53px"
+          }
+        ],
+        "paddingAll": "0px"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "สมัครคลิ๊ก",
+            "align": "center",
+            "color": "#ff00f0",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://bit.ly/3E6lrbh"
+            }
+          }
+        ],
+        "background": {
+          "type": "linearGradient",
+          "angle": "60deg",
+          "startColor": "#ff0000",
+          "endColor": "#0000ff",
+          "centerColor": "#ffffff"
+        },
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://bit.ly/3E6lrbh"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://gighomework.github.io/slotthai/vdo/dg2.jpeg",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "2:2.5",
+            "gravity": "top"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ผ่าน",
+                "color": "#000000",
+                "align": "center",
+                "size": "xs",
+                "offsetTop": "3px"
+              }
+            ],
+            "position": "absolute",
+            "cornerRadius": "20px",
+            "offsetTop": "18px",
+            "backgroundColor": "#aefd60",
+            "offsetStart": "18px",
+            "height": "25px",
+            "width": "53px"
+          }
+        ],
+        "paddingAll": "0px"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ติดต่อแอดมิน",
+            "align": "center",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://bit.ly/3JBlpJN"
+            }
+          }
+        ],
+        "background": {
+          "type": "linearGradient",
+          "angle": "60deg",
+          "startColor": "#0000ff",
+          "endColor": "#ff0000",
+          "centerColor": "#ffffff"
+        },
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://bit.ly/3JBlpJN"
+        }
+      }
+    }
+  ]
+}
+ 
+ 
+   }
+             ])
+      if (result) {
+        alert(`[${result.status}] ส่งสำเร็จ`)
+      } else {
+        const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
+
+        if (minorVer === undefined) {
+          alert('ShareTargetPicker was canceled in external browser')
+          return
+        }
+
+        if (parseInt(majorVer) >= 10 && parseInt(minorVer) >= 10 && parseInt(patchVer) > 0) {
+          alert('การแชร์ถูก ยกเลิก')
+        }
+      }
+    }
+    function logOut() {
+      liff.logout()
+      window.location.reload()
+    }
+    async function main() {
+      await liff.init({ liffId: "1656907941-LJw00vr3" })
+      if (liff.isLoggedIn()) {
+        document.getElementById("btnShare").style.display = "block"
+        if (!liff.isInClient()) {
+          document.getElementById("btnLogOut").style.display = "block"
+        }
+      } else {
+          alert('กรุณา เข้าสู่ระบบ\n\n by แอดกิ๊ก')
+        document.getElementById("btnLogin").style.display = "block"
+      }
+    }
+    main()
+  </script>
+    </body>
+</html>
