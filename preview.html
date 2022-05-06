@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NS2RG4GS2T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NS2RG4GS2T');
+</script>
  <meta http-equiv="content-type" content="text/html;charset=utf-8">   
    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
@@ -8,9 +16,6 @@
   var vConsole = new window.VConsole();
 </script>
     <script charset="utf-8" src="js/sdk.js"></script>
-
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ben sin</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -97,7 +102,7 @@ function previewUrlInfo(url, isAutoSend = false) {
             {
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify({ url: oldUrl.href }),
+                body: JSON.stringify({ 'url:' + oldUrl.href }),
             })
         .then(function(reqResponse) {
             return reqResponse.json();
