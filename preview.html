@@ -196,9 +196,12 @@ function registerButtonHandlers() {
     // login call, only when external browser is used
     document.getElementById('liffLoginButton').addEventListener('click', function() {
         if (!liff.isLoggedIn()) {
-            // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
+            document.getElementById('getPreviewButton').style.display = "block";
+            document.getElementById('liffLoginButton').style.display = "block";
             liff.login();
-        }
+        }else{
+             document.getElementById('liffLoginButton').style.display = "block";
+      }
     });
 }
 
