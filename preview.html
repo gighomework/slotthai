@@ -1,69 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-  <!-- Created by Niush Sitaula -->
-        <title>GIG SLOTTHAI</title>
+ <meta http-equiv="content-type" content="text/html;charset=utf-8">   
+   <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+<script>
+  // VConsole will be exported to `window.VConsole` by default.
+  var vConsole = new window.VConsole();
+</script>
+    <script charset="utf-8" src="js/sdk.js"></script>
+    <script src="js/liff-starter.2.js"></script>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>bensin</title> 
-  <link rel="stylesheet" href="bootstrap.min.css"> 
-  <link rel="icon" type="image/png" href="favicon.png"> 
- </head> 
- <body> 
-  <div class="container mt-3"> 
-   <form class="form-group"> 
-    <input name="sharedUrl" type="url" id="sharedUrl" class="searchField form-control"> 
-   </form> 
-   <!-- ACTION BUTTONS --> 
-   <center> 
-    <button id="getPreviewButton" class="btn btn-primary">Get Preview</button> 
-    <button id="shareTargetPicker" class="btn btn-primary">Open Share Target Picker</button> 
-    <button id="liffLoginButton" class="btn btn-success">LINE Login</button> 
-   </center> 
-  </div> 
-  <div id="shareTargetPickerMessage"></div> 
-  <!-- PROFILE INFO --> 
-  <div id="previewInfo" class="container" style="display: none;"> 
-   <div id="previewPictureDiv" class="card"> 
-    <img id="image" src="" class="card-img-top" alt="Load image failed"> 
-    <div class="card-body"> 
-     <h5 id="title" class="card-title"></h5> 
-     <p id="description" class="card-text"></p> 
-    </div> 
-   </div> 
-  </div> 
-  <div id="statusMessage"> 
-   <div id="isInClientMessage"></div> 
-  </div> 
-  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holly Share</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <div class="container mt-3">
+        <form class="form-group">
+            <input name="sharedUrl" type="url" id="sharedUrl" class="searchField form-control" />
+        </form>
+        <!-- ACTION BUTTONS -->
+        <center>
+            <button id="getPreviewButton" class="btn btn-primary">Get Preview</button>
+            <button id="shareTargetPicker" class="btn btn-primary">Open Share Target Picker</button>
+            <button id="liffLoginButton" class="btn btn-success">LINE Login</button>
+        </center>
+        </div>
+        <div id="shareTargetPickerMessage"></div>
+        <!-- PROFILE INFO -->
+        <div id="previewInfo" class="container" style="display: none;">
+            <div id="previewPictureDiv" class="card">
+                <img id="image" src="#" class="card-img-top" alt="Load image failed">
+                <div class="card-body">
+                    <h5 id="title" class="card-title"></h5>
+                    <p id="description" class="card-text"></p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="statusMessage">
+            <div id="isInClientMessage"></div>
+        </div>
+    </div>
     <script>
-        window.onload = function() {
-    const useNodeJS = true;   // if you are not using a node server, set this value to false
-    const defaultLiffId = "liff.line.me/1656907941-LJw00vr3";   // change the default LIFF value if you are not using a node server
+        window.onload = function () {
+    const defaultLiffId = "1656907941-LJw00vr3";
+    initializeLiffOrDie(defaultLiffId);
 
-    // DO NOT CHANGE THIS
-    let myLiffId = "";
-
-    // if node is used, fetch the environment variable and pass it to the LIFF method
-    // otherwise, pass defaultLiffId
-    if (useNodeJS) {
-        fetch('/send-id')
-            .then(function(reqResponse) {
-                return reqResponse.json();
-            })
-            .then(function(jsonResponse) {
-                myLiffId = jsonResponse.id;
-                initializeLiffOrDie(myLiffId);
-            })
-            .catch(function(error) {
-            });
-    } else {
-        myLiffId = defaultLiffId;
-        initializeLiffOrDie(myLiffId);
-    }
 };
 
 var _title = "";
@@ -72,6 +58,10 @@ var _image = "";
 var _url = "";
 var _aspectRatio = "20:13"
 
+/**
+* Check if myLiffId is null. If null do not initiate liff.
+* @param {string} myLiffId The LIFF ID of the selected element
+*/
 function initializeLiffOrDie(myLiffId) {
     if (!myLiffId) {
     } else {
@@ -79,12 +69,17 @@ function initializeLiffOrDie(myLiffId) {
     }
 }
 
+/**
+* Initialize LIFF
+* @param {string} myLiffId The LIFF ID of the selected element
+*/
 function initializeLiff(myLiffId) {
     liff
         .init({
             liffId: myLiffId
         })
         .then(() => {
+            // start to use LIFF's api
             initializeApp();
         })
         .catch((err) => {
@@ -92,7 +87,11 @@ function initializeLiff(myLiffId) {
 }
 
 function previewUrlInfo(url, isAutoSend = false) {
+        // handle facebook no preview issue
         var oldUrl = new URL(url);
+	if (oldUrl.hostname.includes('facebook')) {
+            oldUrl.hostname = 'mobile.facebook.com';
+        }
         console.log('url:' + oldUrl.href);
         fetch('/parse',
             {
@@ -108,27 +107,39 @@ function previewUrlInfo(url, isAutoSend = false) {
             _description = jsonResponse.description;
             _image = jsonResponse.image;
             _url = url;
+
             document.getElementById('title').textContent = _title;
             document.getElementById('description').textContent = _description;
 
             const previewPictureDiv = document.getElementById('previewPictureDiv');
-            if (previewPictureDiv.firstElementChild) {
-                previewPictureDiv.removeChild(previewPictureDiv.firstElementChildk);
-            }
-            const img = document.createElement('img');
-            img.onload = function () {£
-                console.log(thills.width + ';l£lx' + this.height);
-                _aspectRatio = this.width + ":" + this.height;
-                // send the message after image is fetched.
+            
+            if (!_image) {
+                const bold = document.createElement('b');
+                bold.innerText = 'No Image!';
+                previewPictureDiv.appendChild(bold);
                 if (isAutoSend) {
-                    setTimeout(function () { sendFlexMessage(); }, 1000);
+                    setTimeout(function () { sendFlexMessage(); }, 300);
                 }
+            } else {
+                _image = _image.replace('http://', 'https://');
+                const img = document.getElementById('image');
+                //const img = document.createElement('img');
+                img.classList.add("card-img-top");
+                img.onload = function () {
+                    console.log(this.width + 'x' + this.height);
+                    _aspectRatio = this.width + ":" + this.height;
+                    // send the message after image is fetched.
+                    if (isAutoSend) {
+                        setTimeout(function () { sendFlexMessage(); }, 300);
+                    }
+                }
+                img.src = _image;
+                img.alt = 'Preview Picture';
+                //previewPictureDiv.appendChild(img);
             }
-            img.src = _image;
-            img.alt = 'Preview Picture';
-            previewPictureDiv.appendChild(img);
 
             togglePreviewData();
+            document.getElementById('previewInfo').style.display = 'block';
         })
         .catch(function(error) {
             console.log('parse API error' + error);
@@ -136,18 +147,21 @@ function previewUrlInfo(url, isAutoSend = false) {
 
 }
 
+/**
+ * Initialize the app by calling functions handling individual app components
+ */
 function initializeApp() {
     // scenario: the shared url is brought from url path
     // by pass '?url='
     var urlParam = "";
-    if (window.location.sekkarch.startsWith('?url=')) {
-        urlParam = windowk.location.search.substring(5);
+    if (window.location.search.startsWith('?url=')) {
+        urlParam = window.location.search.substring(5);
     }
     if(urlParam != "") {
         console.log(urlParam);
-        gtag('event','em.xternal', {'url': urlParam});
+        gtag('event','external', {'url': urlParam});
 
-        document.getElementById("sharedUrl").value = urlParam;k=
+        document.getElementById("sharedUrl").value = urlParam;
         previewUrlInfo(urlParam, true);
     }
 
@@ -155,11 +169,13 @@ function initializeApp() {
 
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
-        document.getElementById("liffLoginButton").classList.add('hidden');
-    } else {
+        toggleElement("liffLoginButton");
     }
 }
 
+/**
+* Register event handlers for the buttons displayed in the app
+*/
 function registerButtonHandlers() {
     // get preview 
     document.getElementById('getPreviewButton').addEventListener('click', function() {
@@ -182,6 +198,8 @@ function registerButtonHandlers() {
 }
 
 function sendFlexMessage() {
+    if (!_title && !_description && !_image) return;
+
     liff.shareTargetPicker([
         createFlexMessageData(_title, _description, _image, _url, _aspectRatio)
     ]
@@ -194,8 +212,70 @@ function sendFlexMessage() {
 
 function createFlexMessageData(title, description, image, url, aspectRatio) {
     var myFlexContent = {
-         // 可以利用 flex message simulator 建立 https://developers.line.biz/flex-simulator/
+        "type": "bubble",
+        "size": "kilo",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "action": {
+            "type": "uri",
+            "label": "前往",
+            "uri": url,
+          },
+          "contents": []
+        }
       };
+
+    if (_image) {
+        myFlexContent.hero = {
+            "type": "image",
+            "url": image,
+            "size": "full",
+            "aspectRatio": aspectRatio,
+            "aspectMode": "cover",
+            "action": {
+                "type": "uri",
+                "uri": url
+            }
+        };
+    }
+    if (_title) {
+        myFlexContent.body.contents.push({
+            "type": "text",
+            "text": title,
+            "weight": "bold",
+            "size": "md",
+            "wrap": true,
+            "maxLines": 3
+        });
+    }
+
+    if (_description) {
+        myFlexContent.body.contents.push({
+            "type": "box",
+            "layout": "vertical",
+            "margin": "lg",
+            "spacing": "sm",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": description,
+                            "wrap": true,
+                            "color": "#666666",
+                            "size": "xxs",
+                            "flex": 5,
+                            "maxLines": 7
+                        }
+                    ]
+                }
+            ]
+        });
+    }
 
     var flex = {
         "type": "flex",
@@ -206,14 +286,14 @@ function createFlexMessageData(title, description, image, url, aspectRatio) {
     return flex;
 }
 
-function sendAlertIfNotInClient() {
-    alert('This button is unavailable as LIFF is currently being opened in an external browser.');
-}
-
 function togglePreviewData() {
     toggleElement('previewInfo');
 }
 
+/**
+* Toggle specified element
+* @param {string} elementId The ID of the selected element
+*/
 function toggleElement(elementId) {
     const elem = document.getElementById(elementId);
     if (elem.offsetWidth > 0 && elem.offsetHeight > 0) {
@@ -222,8 +302,7 @@ function toggleElement(elementId) {
         elem.style.display = 'block';
     }
 }
+
     </script>
-    
-  
-    </body>
+</body>
 </html>
