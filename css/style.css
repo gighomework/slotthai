@@ -434,3 +434,6 @@ div.sticky {
     background: linear-gradient(50deg, rgba(0,200,0,0.5) 0%, rgba(5,5,255,0.5) 50%, rgba(255,1,255,0.5) 100%);
 
       }
+#getPreviewButton, #shareTargetPicker, #liffLoginButton {
+display:none;
+}
