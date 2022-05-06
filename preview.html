@@ -102,7 +102,7 @@ function previewUrlInfo(url, isAutoSend = false) {
             {
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify({ 'url:' + oldUrl.href }),
+                body: JSON.stringify({ url: oldUrl.href }),
             })
         .then(function(reqResponse) {
             return reqResponse.json();
