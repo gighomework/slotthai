@@ -36,20 +36,21 @@
  "type": "flex",
  "altText": "ติดต่อกิ๊กค่ะ",
  "contents":
-
-{
+   {
   "type": "bubble",
   "size": "giga",
   "hero": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dl9numpkt/image/upload/v1651986456/k5zcmeqzyxz4h44uhmvw.png",
-    "size": "full",
-    "aspectRatio": "20:20",
-    "aspectMode": "cover",
-    "action": {
-      "type": "uri",
-      "uri": "http://linecorp.com/"
-    }
+    "type": "video",
+    "url": "https://gighomework.github.io/slotthai/vdo/play88.mp4",
+    "previewUrl": "https://res.cloudinary.com/dl9numpkt/image/upload/v1652086817/tgrw9zkstywctsvvdssa.png",
+    "altContent": {
+      "type": "image",
+      "size": "full",
+      "aspectRatio": "2:2.5",
+      "aspectMode": "cover",
+      "url": "https://res.cloudinary.com/dl9numpkt/image/upload/v1652086817/tgrw9zkstywctsvvdssa.png"
+    },
+    "aspectRatio": "2:2.5"
   },
   "footer": {
     "type": "box",
@@ -57,29 +58,34 @@
     "spacing": "sm",
     "contents": [
       {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
+        "type": "text",
+        "text": "เอาของเทอคืนไป",
+        "align": "center",
+        "adjustMode": "shrink-to-fit",
+        "color": "#ffffff",
         "action": {
           "type": "uri",
-          "label": "รับทำการ์ดเมสเสจสวยๆ",
-          "uri": "https://lin.ee/9FX1chx"
-        },
-        "color": "#ef66ad"
+          "label": "action",
+          "uri": "http://linecorp.com/"
+        }
       }
     ],
     "flex": 0,
     "background": {
       "type": "linearGradient",
-      "angle": "175deg",
-      "startColor": "#ef66ad",
-      "endColor": "#ef66ad",
-      "centerColor": "#00000000"
+      "angle": "60deg",
+      "startColor": "#000000",
+      "endColor": "#000000",
+      "centerColor": "#ffdd0090"
+    },
+    "backgroundColor": "#ff0000",
+    "action": {
+      "type": "uri",
+      "label": "action",
+      "uri": "http://linecorp.com/"
     }
   }
 }
-
-   }
              ])
       if (result) {
         alert(`[${result.status}] ส่งสำเร็จ`)
